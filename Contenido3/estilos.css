@@ -1,0 +1,564 @@
+/* ==========================================================================
+   PORTAL WEB: GO-TŌBUN NO HANAYOME (五等分の花嫁)
+   ESTILOS GENERALES Y DISEÑO VISUAL OTAKU / ANIME
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@400;500;600;700&display=swap');
+
+/* --- 1. PALETA DE COLORES OTAKU INSPIRADA EN LAS 5 QUINTILLIZAS --- */
+:root {
+  /* Colores insignia de las cinco hermanas Nakano */
+  --ichika: #ff6584;        /* Ichika: Rosa cálido / Flor de cerezo */
+  --nino: #9c27b0;          /* Nino: Morado / Púrpura mariposa */
+  --miku: #0288d1;          /* Miku: Azul cielo / Auriculares */
+  --yotsuba: #2e7d32;       /* Yotsuba: Verde trébol de 4 hojas */
+  --itsuki: #e53935;        /* Itsuki: Rojo rubí / Estrella */
+
+  /* Variantes suaves para fondos y acentos */
+  --ichika-suave: #ffeef2;
+  --nino-suave: #f7edfa;
+  --miku-suave: #e8f4fd;
+  --yotsuba-suave: #edf7ed;
+  --itsuki-suave: #feeeee;
+
+  /* Fondo general y tarjetas */
+  --fondo: #fcf9fb;
+  --tarjeta-bg: #ffffff;
+  --texto: #2d3142;
+  --texto-suave: #5c6274;
+  --borde-tarjeta: rgba(232, 122, 144, 0.18);
+  --sombra-tarjeta: 0 8px 24px rgba(156, 39, 176, 0.08);
+  --sombra-hover: 0 14px 34px rgba(156, 39, 176, 0.15);
+
+  /* Degradados distintivos */
+  --gradiente-quintuplets: linear-gradient(90deg, #ff6584 0%, #ff6584 20%, #9c27b0 20%, #9c27b0 40%, #0288d1 40%, #0288d1 60%, #2e7d32 60%, #2e7d32 80%, #e53935 80%, #e53935 100%);
+  --gradiente-texto: linear-gradient(135deg, #ff6584 0%, #9c27b0 30%, #0288d1 65%, #e53935 100%);
+  --gradiente-boton: linear-gradient(135deg, #ff6584 0%, #9c27b0 100%);
+}
+
+/* --- REINICIO Y TIPOGRAFÍA BASE --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: var(--fondo);
+  color: var(--texto);
+  margin: 0;
+  padding: 85px 15px 40px 15px; /* Espacio superior para la barra fija */
+  line-height: 1.5;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(255, 101, 132, 0.04) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(156, 39, 176, 0.04) 0%, transparent 25%),
+    radial-gradient(circle at 50% 50%, rgba(2, 136, 209, 0.03) 0%, transparent 35%);
+  background-attachment: fixed;
+}
+
+.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- 2. FRANJA SUPERIOR Y MENÚ DE NAVEGACIÓN FIJO --- */
+.franja-superior {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--gradiente-quintuplets);
+  z-index: 1001;
+}
+
+.barra-navegacion {
+  position: fixed;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(156, 39, 176, 0.08);
+  border-bottom: 1px solid rgba(232, 122, 144, 0.2);
+  z-index: 1000;
+}
+
+.nav-contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.nav-logo {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  background: var(--gradiente-texto);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-enlaces {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.nav-enlaces li a {
+  display: inline-block;
+  padding: 7px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--texto);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.nav-enlaces li a:hover {
+  background-color: var(--ichika-suave);
+  color: var(--ichika);
+  transform: translateY(-2px);
+}
+
+.nav-enlaces li a.activo {
+  background: var(--gradiente-boton);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+}
+
+/* --- 3. ESTRUCTURA A 2 COLUMNAS (ESCRITORIO) Y 1 COLUMNA (MÓVIL) --- */
+.layout-portal {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 28px;
+  align-items: start;
+}
+
+.columna-contenido {
+  min-width: 0;
+}
+
+.columna-lateral {
+  position: sticky;
+  top: 85px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* --- 4. ENCABEZADOS Y TEXTOS --- */
+h1 {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 800;
+  font-size: 2.1rem;
+  text-align: center;
+  background: var(--gradiente-texto);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 10px 0 22px 0;
+  line-height: 1.3;
+}
+
+h2 {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: #2b2d42;
+  border-left: 5px solid var(--ichika);
+  padding-left: 12px;
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+p {
+  text-align: justify;
+  margin: 12px 0;
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--nino);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--ichika);
+  text-decoration: underline;
+}
+
+ul {
+  padding-left: 20px;
+  line-height: 1.5;
+}
+
+ul li {
+  margin: 8px 0;
+}
+
+/* --- 5. COMPONENTES ESTILO ANIME: TARJETAS --- */
+.tarjeta-seccion {
+  background: var(--tarjeta-bg);
+  border-radius: 18px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--sombra-tarjeta);
+  border: 1px solid var(--borde-tarjeta);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tarjeta-seccion:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-hover);
+}
+
+.tarjeta-lateral {
+  background: var(--tarjeta-bg);
+  border-radius: 18px;
+  padding: 20px 22px;
+  box-shadow: var(--sombra-tarjeta);
+  border: 1px solid var(--borde-tarjeta);
+}
+
+.tarjeta-lateral h3 {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.1rem;
+  color: var(--texto);
+  margin-top: 0;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ichika-suave);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Variantes con acentos de color para cada hermana */
+.tarjeta-ichika { border-left: 6px solid var(--ichika); }
+.tarjeta-nino { border-left: 6px solid var(--nino); }
+.tarjeta-miku { border-left: 6px solid var(--miku); }
+.tarjeta-yotsuba { border-left: 6px solid var(--yotsuba); }
+.tarjeta-itsuki { border-left: 6px solid var(--itsuki); }
+
+.tarjeta-ichika h2 { border-left-color: var(--ichika); }
+.tarjeta-nino h2 { border-left-color: var(--nino); }
+.tarjeta-miku h2 { border-left-color: var(--miku); }
+.tarjeta-yotsuba h2 { border-left-color: var(--yotsuba); }
+.tarjeta-itsuki h2 { border-left-color: var(--itsuki); }
+
+/* --- 6. IMÁGENES CON MARCO DECORATIVO --- */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 3px solid rgba(232, 122, 144, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.015);
+  box-shadow: 0 10px 28px rgba(156, 39, 176, 0.15);
+}
+
+.centrado {
+  text-align: center;
+}
+
+/* --- 7. CITAS CON COLOR VERDE INTENSO Y FONDO SUAVE --- */
+.cita {
+  color: #1b5e20;
+  background-color: #e8f5e9;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-weight: 600;
+  border-bottom: 1.5px solid #81c784;
+  display: inline-block;
+  line-height: 1.35;
+  transition: all 0.2s ease;
+}
+
+.cita:hover {
+  background-color: #c8e6c9;
+  color: #0f3d13;
+  transform: translateY(-1px);
+}
+
+/* --- 8. TABLAS CON ENCABEZADO DE COLOR Y FILAS CEBRA --- */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 18px 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(156, 39, 176, 0.08);
+  border: 1px solid rgba(156, 39, 176, 0.15);
+}
+
+table th {
+  background: linear-gradient(135deg, var(--nino) 0%, var(--miku) 100%);
+  color: #ffffff;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+table td {
+  padding: 12px 16px;
+  color: var(--texto);
+  border-bottom: 1px solid rgba(156, 39, 176, 0.06);
+  font-size: 0.92rem;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #faf5fc;
+}
+
+table tbody tr:hover {
+  background-color: #f3e5f5;
+  transition: background-color 0.2s ease;
+}
+
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- 9. MULTIMEDIA EN TARJETAS CON BORDE DISTINTIVO --- */
+.tarjeta-multimedia {
+  background: linear-gradient(135deg, #ffffff 0%, #fdf5f9 100%);
+  border: 2px solid rgba(232, 122, 144, 0.35);
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 24px rgba(232, 122, 144, 0.1);
+  text-align: center;
+}
+
+.tarjeta-multimedia audio {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 30px;
+  outline: none;
+  margin-top: 8px;
+}
+
+.tarjeta-multimedia video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  border: 2px solid rgba(156, 39, 176, 0.2);
+  margin-top: 8px;
+}
+
+/* --- 10. ÍNDICES Y BOTONES DE NAVEGACIÓN LLAMATIVOS --- */
+.indice {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.indice li {
+  margin: 10px 0;
+}
+
+.indice li a {
+  display: block;
+  padding: 12px 18px;
+  background-color: var(--ichika-suave);
+  border-left: 5px solid var(--ichika);
+  border-radius: 10px;
+  color: var(--texto);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.indice li a:hover {
+  background: var(--gradiente-boton);
+  color: #ffffff;
+  transform: translateX(5px);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(156, 39, 176, 0.25);
+}
+
+.navegacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 30px;
+  padding: 20px 24px;
+  background: var(--tarjeta-bg);
+  border-radius: 18px;
+  box-shadow: var(--sombra-tarjeta);
+  border: 1px solid var(--borde-tarjeta);
+}
+
+.navegacion a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: #ffffff;
+  background: var(--gradiente-boton);
+  box-shadow: 0 4px 14px rgba(232, 122, 144, 0.35);
+  transition: all 0.3s ease;
+}
+
+.navegacion a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+  filter: brightness(1.08);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Badges decorativos de las hermanas en la barra lateral */
+.quintillizas-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.badge-hermana {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.badge-hermana:hover {
+  transform: translateX(4px);
+}
+
+.badge-ichika { background: linear-gradient(135deg, #ff6584, #ff8da1); }
+.badge-nino { background: linear-gradient(135deg, #9c27b0, #ba68c8); }
+.badge-miku { background: linear-gradient(135deg, #0288d1, #4fc3f7); }
+.badge-yotsuba { background: linear-gradient(135deg, #2e7d32, #66bb6a); }
+.badge-itsuki { background: linear-gradient(135deg, #e53935, #ef5350); }
+
+/* Estilos específicos para la portada / presentación */
+.logos {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.logos img {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.logos img:hover {
+  transform: scale(1.05);
+}
+
+.datos {
+  background: linear-gradient(135deg, #ffffff 0%, var(--ichika-suave) 100%);
+  border-radius: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--borde-tarjeta);
+}
+
+.datos p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+/* --- 11. DISEÑO RESPONSIVO (TABLETS Y MÓVILES) --- */
+@media (max-width: 991px) {
+  .layout-portal {
+    grid-template-columns: 1fr;
+  }
+  
+  .columna-lateral {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 105px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .nav-contenedor {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .nav-enlaces {
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .nav-enlaces li a {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .tarjeta-seccion {
+    padding: 18px 20px;
+  }
+
+  .navegacion {
+    flex-direction: column;
+  }
+
+  .navegacion a {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
